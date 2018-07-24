@@ -1,0 +1,320 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorBackground"
+    android:gravity="top"
+    android:orientation="vertical"
+    android:padding="10sp"
+    tools:context=".MainActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5sp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/lblFunction"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15sp"
+            android:layout_weight="1"
+            android:hint="@string/text_hint"
+            android:maxLength="80"
+            android:textColor="@color/colorText"
+            android:textSize="18sp" />
+
+        <ImageButton
+            android:id="@+id/btnEraseCharacter"
+            android:layout_width="35dp"
+            android:layout_height="match_parent"
+            android:layout_marginRight="20sp"
+            android:background="@color/colorBackground"
+            android:scaleType="fitStart"
+            android:src="@drawable/deletecharacter" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="25sp"
+        android:layout_marginTop="25sp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/lblVariables"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="15sp"
+            android:layout_weight="1"
+            android:text="@string/text_numberOfVariables"
+            android:textColor="@color/colorText"
+            android:textSize="18sp" />
+
+        <Spinner
+            android:id="@+id/spnNumberOfVariables"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginRight="20sp"></Spinner>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="5sp"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15sp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/OpDisjunction"
+                android:layout_width="70sp"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="15sp"
+                android:background="@color/colorPrimary"
+                android:text="∨"
+                android:textColor="@color/colorBackground"
+                android:textSize="18sp" />
+
+            <Button
+                android:id="@+id/OpConjunction"
+                android:layout_width="70sp"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="15sp"
+                android:background="@color/colorPrimary"
+                android:text="∧"
+                android:textColor="@color/colorBackground"
+                android:textSize="18sp" />
+
+            <Button
+                android:id="@+id/OpP"
+                android:layout_width="70sp"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="15sp"
+                android:background="@color/colorOperand"
+                android:text="P"
+                android:textColor="@color/colorBackground"
+                android:textSize="18sp" />
+
+            <Button
+                android:id="@+id/OpQ"
+                android:layout_width="70sp"
+                android:layout_height="wrap_content"
+                android:background="@color/colorOperand"
+                android:text="Q"
+                android:textColor="@color/colorBackground"
+                android:textSize="18sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15sp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/OpConditional"
+                android:layout_width="70sp"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="15sp"
+                android:background="@color/colorPrimary"
+                android:text="→"
+                android:textColor="@color/colorBackground"
+                android:textSize="18sp" />
+
+            <Button
+                android:id="@+id/OpBiconditional"
+                android:layout_width="70sp"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="15sp"
+                android:background="@color/colorPrimary"
+                android:text="↔"
+                android:textColor="@color/colorBackground"
+                android:textSize="18sp" />
+
+            <Button
+                android:id="@+id/OpR"
+                android:layout_width="70sp"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="15sp"
+                android:background="@color/colorOperand"
+                android:text="R"
+                android:textColor="@color/colorBackground"
+                android:textSize="18sp" />
+
+            <Button
+                android:id="@+id/OpS"
+                android:layout_width="70sp"
+                android:layout_height="wrap_content"
+                android:background="@color/colorOperand"
+                android:text="S"
+                android:textColor="@color/colorBackground"
+                android:textSize="18sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15sp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/OpNon1"
+                android:layout_width="70sp"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="15sp"
+                android:background="@color/colorPrimary"
+                android:text="↑"
+                android:textColor="@color/colorBackground"
+                android:textSize="18sp" />
+
+            <Button
+                android:id="@+id/OpNon2"
+                android:layout_width="70sp"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="15sp"
+                android:background="@color/colorPrimary"
+                android:text="↓"
+                android:textColor="@color/colorBackground"
+                android:textSize="18sp" />
+
+            <Button
+                android:id="@+id/OpT"
+                android:layout_width="70sp"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="15sp"
+                android:background="@color/colorOperand"
+                android:text="T"
+                android:textColor="@color/colorBackground"
+                android:textSize="18sp" />
+
+            <Button
+                android:id="@+id/OpU"
+                android:layout_width="70sp"
+                android:layout_height="wrap_content"
+                android:background="@color/colorOperand"
+                android:text="U"
+                android:textColor="@color/colorBackground"
+                android:textSize="18sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15sp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/OpLeft"
+                android:layout_width="70sp"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="15sp"
+                android:background="@color/colorPrimary"
+                android:text="("
+                android:textColor="@color/colorBackground"
+                android:textSize="18sp" />
+
+            <Button
+                android:id="@+id/OpRight"
+                android:layout_width="70sp"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="15sp"
+                android:background="@color/colorPrimary"
+                android:text=")"
+                android:textColor="@color/colorBackground"
+                android:textSize="18sp" />
+
+            <Button
+                android:id="@+id/OpV"
+                android:layout_width="70sp"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="15sp"
+                android:background="@color/colorOperand"
+                android:text="V"
+                android:textColor="@color/colorBackground"
+                android:textSize="18sp" />
+
+            <Button
+                android:id="@+id/OpW"
+                android:layout_width="70sp"
+                android:layout_height="wrap_content"
+                android:background="@color/colorOperand"
+                android:text="W"
+                android:textColor="@color/colorBackground"
+                android:textSize="18sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15sp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/OpNegation"
+                android:layout_width="157sp"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="15sp"
+                android:background="@color/colorPrimary"
+                android:text="@string/button_negation"
+                android:textColor="@color/colorBackground"
+                android:textSize="18sp" />
+
+            <Button
+                android:id="@+id/OpX"
+                android:layout_width="70sp"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="15sp"
+                android:background="@color/colorOperand"
+                android:text="X"
+                android:textColor="@color/colorBackground"
+                android:textSize="18sp" />
+
+            <Button
+                android:id="@+id/OpY"
+                android:layout_width="70sp"
+                android:layout_height="wrap_content"
+                android:background="@color/colorOperand"
+                android:text="Y"
+                android:textColor="@color/colorBackground"
+                android:textSize="18sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15sp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btnClear"
+                android:layout_width="157sp"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="15sp"
+                android:background="@color/colorAccent"
+                android:text="@string/button_clear"
+                android:textColor="@color/colorBackground"
+                android:textSize="18sp" />
+
+            <Button
+                android:id="@+id/btnEvaluate"
+                android:layout_width="157sp"
+                android:layout_height="wrap_content"
+                android:background="@color/colorAccent"
+                android:text="@string/button_solve"
+                android:textColor="@color/colorBackground"
+                android:textSize="18sp" />
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>
