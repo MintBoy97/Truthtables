@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Tablas de verdad</string>
-    <string name="text_hint">Contruye tu función abajo</string>
+    <string name="text_hint">Construye tu función abajo</string>
     <string name="button_solve">Evaluar</string>
     <string name="button_negation">Negación</string>
     <string name="button_clear">Limpiar</string>

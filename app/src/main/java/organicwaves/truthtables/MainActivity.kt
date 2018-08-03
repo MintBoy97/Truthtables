@@ -4,14 +4,17 @@ import android.content.Intent
 import android.graphics.Color
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.text.InputType
+import android.view.MotionEvent
 import android.view.View
 import android.view.animation.AnimationUtils
 import android.widget.*
+import android.widget.EditText
 
-class MainActivity : AppCompatActivity(), View.OnClickListener, AdapterView.OnItemSelectedListener {
+class MainActivity : AppCompatActivity(), View.OnClickListener, AdapterView.OnItemSelectedListener, View.OnTouchListener {
 
-    private var NumberOfVariables = 2
-    private var Variables = mutableListOf<Button>()
+    private var numberOfVariables = 2
+    private var variables = mutableListOf<Button>()
 
     private lateinit var btnDisjunction: Button
     private lateinit var btnConjunction: Button
@@ -33,10 +36,8 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, AdapterView.OnIt
     private lateinit var btnRightParen: Button
     private lateinit var btnClear: Button
     private lateinit var btnEraseCharacter: ImageButton
-    private lateinit var lblFunction: TextView
+    private lateinit var lblFunction: EditText
     private lateinit var spnNumberOfVariables: Spinner
-
-    private var alerts = alertsToShow(this)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -86,59 +87,70 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, AdapterView.OnIt
         btnX.setOnClickListener(this)
         btnY.setOnClickListener(this)
 
-        Variables.add(0,btnP)
-        Variables.add(1,btnQ)
-        Variables.add(2,btnR)
-        Variables.add(3,btnS)
-        Variables.add(4,btnT)
-        Variables.add(5,btnU)
-        Variables.add(6,btnV)
-        Variables.add(7,btnW)
-        Variables.add(8,btnX)
-        Variables.add(9,btnY)
+        variables.add(0,btnP)
+        variables.add(1,btnQ)
+        variables.add(2,btnR)
+        variables.add(3,btnS)
+        variables.add(4,btnT)
+        variables.add(5,btnU)
+        variables.add(6,btnV)
+        variables.add(7,btnW)
+        variables.add(8,btnX)
+        variables.add(9,btnY)
 
         //Init Spinner
-        val NumberVariables = arrayOf(1,2,3,4,5,6,7,8,9,10)
-        val adapter = ArrayAdapter(this, R.layout.support_simple_spinner_dropdown_item, NumberVariables)
+        val numberVariables = arrayOf(1,2,3,4,5,6,7,8,9,10)
+        val adapter = ArrayAdapter(this, R.layout.support_simple_spinner_dropdown_item, numberVariables)
         spnNumberOfVariables.adapter = adapter
         spnNumberOfVariables.onItemSelectedListener = this
-
+        lblFunction.setOnTouchListener(this)
     }
 
     override fun onClick(source: View) {
         source.startAnimation(AnimationUtils.loadAnimation(applicationContext, R.anim.abc_grow_fade_in_from_bottom))
         when(source.id){
-            R.id.btnClear -> lblFunction.text = ""
-            R.id.btnEraseCharacter -> {
-                if (lblFunction.text != ""){
-                    lblFunction.text = "${lblFunction.text}".substring(0,lblFunction.text.length-1)
-                }
-            }
-            R.id.OpNegation -> lblFunction.text = "${lblFunction.text}'"
+            R.id.btnClear -> lblFunction.setText("")
             R.id.btnEvaluate -> {
                 val nac = Intent(this, ShowResults::class.java)
-                nac.putExtra("function",lblFunction.text)
+                nac.putExtra("function",lblFunction.text.toString())
                 nac.putExtra("numberOfVariables",(spnNumberOfVariables.selectedItemPosition+1).toString())
                 startActivity(nac)
             }
+            R.id.btnEraseCharacter ->{
+                if (lblFunction.text.toString() != ""){
+                    lblFunction.setText(lblFunction.text.toString().substring(0,lblFunction.text.toString().length-1))
+                }
+            }
+            R.id.OpNegation -> {
+                lblFunction.setText("${lblFunction.text}'")
+            }
             else -> {
                 val clickedButton = findViewById<Button>(source.id)
-                lblFunction.text = "${lblFunction.text}${clickedButton.text}"
+                lblFunction.setText("${lblFunction.text}${clickedButton.text}")
             }
         }
+        lblFunction.setSelection(lblFunction.text.toString().length)
     }
 
     override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
-        NumberOfVariables = p2 + 1
+        numberOfVariables = p2 + 1
         for (i in 0..9){
-            Variables.get(i).isEnabled = false
-            Variables.get(i).setBackgroundColor(Color.parseColor("#708777"))
+            variables[i].isEnabled = false
+            variables[i].setBackgroundColor(Color.parseColor("#708777"))
         }
         for (i in 0..p2){
-            Variables.get(i).isEnabled = true
-            Variables.get(i).setBackgroundColor(Color.parseColor("#445248"))
+            variables[i].isEnabled = true
+            variables[i].setBackgroundColor(Color.parseColor("#445248"))
         }
-        lblFunction.text = ""
+        lblFunction.setText("")
+    }
+
+    override fun onTouch(v: View, event: MotionEvent): Boolean {
+        var inType = lblFunction.inputType
+        lblFunction.inputType = InputType.TYPE_NULL
+        lblFunction.onTouchEvent(event)
+        lblFunction.inputType = inType
+        return true
     }
 
     override fun onNothingSelected(p0: AdapterView<*>?) {

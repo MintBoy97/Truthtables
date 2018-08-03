@@ -15,8 +15,6 @@ class generateTruthTable {
     constructor(numberOfVariables: Int, postfixExpression: String) {
         this.numberOfVariables = numberOfVariables
         this.postfixExpression = postfixExpression
-        //println("number of variables: $numberOfVariables")
-        //println("postfix expression: $postfixExpression")
         resultOfTruthTableTable = evaluatePostfixExpression()
     }
 
@@ -111,7 +109,7 @@ class generateTruthTable {
     }
 
     private fun conditional(var1: Int, var2: Int): Int {
-        if (var1 == 1 && var2 == 0) {
+        if (var1 == 0 && var2 == 1) {
             return 0
         }
         return 1
