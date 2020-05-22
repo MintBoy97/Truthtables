@@ -8,7 +8,7 @@
     android:gravity="top"
     android:orientation="vertical"
     android:padding="10sp"
-    tools:context=".MainActivity">
+    tools:context="organicwaves.truthtables.MainActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -74,41 +74,41 @@
             android:orientation="horizontal">
 
             <Button
-                android:id="@+id/OpDisjunction"
+                android:id="@+id/OpAnd"
                 android:layout_width="70sp"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="15sp"
                 android:background="@color/colorPrimary"
-                android:text="∨"
+                android:text="AND"
                 android:textColor="@color/colorBackground"
                 android:textSize="18sp" />
 
             <Button
-                android:id="@+id/OpConjunction"
+                android:id="@+id/OpNand"
                 android:layout_width="70sp"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="15sp"
                 android:background="@color/colorPrimary"
-                android:text="∧"
+                android:text="NAND"
                 android:textColor="@color/colorBackground"
                 android:textSize="18sp" />
 
             <Button
-                android:id="@+id/OpP"
+                android:id="@+id/btnA"
                 android:layout_width="70sp"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="15sp"
                 android:background="@color/colorOperand"
-                android:text="P"
+                android:text="A"
                 android:textColor="@color/colorBackground"
                 android:textSize="18sp" />
 
             <Button
-                android:id="@+id/OpQ"
+                android:id="@+id/btnB"
                 android:layout_width="70sp"
                 android:layout_height="wrap_content"
                 android:background="@color/colorOperand"
-                android:text="Q"
+                android:text="B"
                 android:textColor="@color/colorBackground"
                 android:textSize="18sp" />
         </LinearLayout>
@@ -121,41 +121,41 @@
             android:orientation="horizontal">
 
             <Button
-                android:id="@+id/OpConditional"
+                android:id="@+id/OpOr"
                 android:layout_width="70sp"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="15sp"
                 android:background="@color/colorPrimary"
-                android:text="→"
+                android:text="OR"
                 android:textColor="@color/colorBackground"
                 android:textSize="18sp" />
 
             <Button
-                android:id="@+id/OpBiconditional"
+                android:id="@+id/OpNor"
                 android:layout_width="70sp"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="15sp"
                 android:background="@color/colorPrimary"
-                android:text="↔"
+                android:text="NOR"
                 android:textColor="@color/colorBackground"
                 android:textSize="18sp" />
 
             <Button
-                android:id="@+id/OpR"
+                android:id="@+id/btnC"
                 android:layout_width="70sp"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="15sp"
                 android:background="@color/colorOperand"
-                android:text="R"
+                android:text="C"
                 android:textColor="@color/colorBackground"
                 android:textSize="18sp" />
 
             <Button
-                android:id="@+id/OpS"
+                android:id="@+id/btnD"
                 android:layout_width="70sp"
                 android:layout_height="wrap_content"
                 android:background="@color/colorOperand"
-                android:text="S"
+                android:text="D"
                 android:textColor="@color/colorBackground"
                 android:textSize="18sp" />
         </LinearLayout>
@@ -168,41 +168,41 @@
             android:orientation="horizontal">
 
             <Button
-                android:id="@+id/OpNon1"
+                android:id="@+id/OpXor"
                 android:layout_width="70sp"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="15sp"
                 android:background="@color/colorPrimary"
-                android:text="↑"
+                android:text="XOR"
                 android:textColor="@color/colorBackground"
                 android:textSize="18sp" />
 
             <Button
-                android:id="@+id/OpNon2"
+                android:id="@+id/OpXnor"
                 android:layout_width="70sp"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="15sp"
                 android:background="@color/colorPrimary"
-                android:text="↓"
+                android:text="XNOR"
                 android:textColor="@color/colorBackground"
                 android:textSize="18sp" />
 
             <Button
-                android:id="@+id/OpT"
+                android:id="@+id/btnE"
                 android:layout_width="70sp"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="15sp"
                 android:background="@color/colorOperand"
-                android:text="T"
+                android:text="E"
                 android:textColor="@color/colorBackground"
                 android:textSize="18sp" />
 
             <Button
-                android:id="@+id/OpU"
+                android:id="@+id/btnF"
                 android:layout_width="70sp"
                 android:layout_height="wrap_content"
                 android:background="@color/colorOperand"
-                android:text="U"
+                android:text="F"
                 android:textColor="@color/colorBackground"
                 android:textSize="18sp" />
         </LinearLayout>
@@ -235,21 +235,21 @@
                 android:textSize="18sp" />
 
             <Button
-                android:id="@+id/OpV"
+                android:id="@+id/btnX"
                 android:layout_width="70sp"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="15sp"
                 android:background="@color/colorOperand"
-                android:text="V"
+                android:text="X"
                 android:textColor="@color/colorBackground"
                 android:textSize="18sp" />
 
             <Button
-                android:id="@+id/OpW"
+                android:id="@+id/btnY"
                 android:layout_width="70sp"
                 android:layout_height="wrap_content"
                 android:background="@color/colorOperand"
-                android:text="W"
+                android:text="Y"
                 android:textColor="@color/colorBackground"
                 android:textSize="18sp" />
         </LinearLayout>
@@ -262,31 +262,31 @@
             android:orientation="horizontal">
 
             <Button
-                android:id="@+id/OpNegation"
+                android:id="@+id/OpNot"
                 android:layout_width="157sp"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="15sp"
                 android:background="@color/colorPrimary"
-                android:text="@string/button_negation"
+                android:text="NOT"
                 android:textColor="@color/colorBackground"
                 android:textSize="18sp" />
 
             <Button
-                android:id="@+id/OpX"
+                android:id="@+id/btnZ"
                 android:layout_width="70sp"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="15sp"
                 android:background="@color/colorOperand"
-                android:text="X"
+                android:text="Z"
                 android:textColor="@color/colorBackground"
                 android:textSize="18sp" />
 
             <Button
-                android:id="@+id/OpY"
+                android:id="@+id/btnW"
                 android:layout_width="70sp"
                 android:layout_height="wrap_content"
                 android:background="@color/colorOperand"
-                android:text="Y"
+                android:text="W"
                 android:textColor="@color/colorBackground"
                 android:textSize="18sp" />
         </LinearLayout>

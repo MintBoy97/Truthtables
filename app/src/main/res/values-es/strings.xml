@@ -6,4 +6,6 @@
     <string name="button_negation">Negación</string>
     <string name="button_clear">Limpiar</string>
     <string name="text_numberOfVariables">Número de variables:</string>
+    <string name="input_error">Error al intentar evaluar la función, verifique su entrada, para más detalles consulte el tutorial de uso.</string>
+    <string name="internal_error">Ups, parece que esta aplicación no pudo resolver tu función, verifica tu notacion, si este problema persiste porfavor manda un correo a la siguiente dirección  kukulcanmelancholy@gmail.com con la captura de la función que no se pudo resolver.</string>
 </resources>

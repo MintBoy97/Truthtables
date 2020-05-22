@@ -1,6 +1,6 @@
 package organicwaves.truthtables
 
-class stack {
+class Stack {
 
     private var stk = mutableListOf<kotlin.Char>()
     private var top:Int = -1
@@ -22,7 +22,7 @@ class stack {
     }
 
     fun pop():Char{
-        var temporalItem = stk.get(top)
+        var temporalItem = stk[top]
         top--
         return temporalItem
     }

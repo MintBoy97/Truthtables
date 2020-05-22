@@ -4,7 +4,7 @@ import android.app.AlertDialog
 import android.content.Context
 import android.content.DialogInterface
 
-class alertsToShow {
+class AlertsToShow {
     private var context:Context
     constructor(context:Context){
         this.context = context

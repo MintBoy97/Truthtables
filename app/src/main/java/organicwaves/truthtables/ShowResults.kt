@@ -1,54 +1,57 @@
 package organicwaves.truthtables
 
+// Google ads
+// TableView
 import android.content.Intent
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.TextView
-//for google ads
-import com.google.android.gms.ads.*
-
-
+import android.support.v7.app.AppCompatActivity
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.AdView
+import com.google.android.gms.ads.MobileAds
 
 
 class ShowResults : AppCompatActivity() {
-    private lateinit var lblValues:TextView
-    private var alerts = alertsToShow(this)
+    private var alerts = AlertsToShow(this)
 
-    //for google ads
-    //private lateinit var mInterstitialAd: InterstitialAd
+    // Google ad view
     private lateinit var mAdView : AdView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_show_results)
 
-        //for google ad
+        // Begin Google ad banner
         MobileAds.initialize(this, "ca-app-pub-5364668367910017~8666672714")
-        /*mInterstitialAd = InterstitialAd(this)
-        mInterstitialAd.adUnitId = "ca-app-pub-3940256099942544/1033173712"
-        mInterstitialAd.loadAd(AdRequest.Builder().build())
-        if (mInterstitialAd.isLoaded) {
-            mInterstitialAd.show()
-        }*/
         mAdView = findViewById(R.id.adView)
         val adRequest = AdRequest.Builder().build()
         mAdView.loadAd(adRequest)
-
-        lblValues = findViewById(R.id.lblValues)
+        // End Google ad banner
 
         val searchObject:Intent = intent
-        val nov:Int = searchObject.getStringExtra("numberOfVariables").toInt()
+        val numVar:Int = searchObject.getStringExtra("numberOfVariables").toInt()
         val function = searchObject.getStringExtra("function")
-        try {
-            val cn = changeNotation(function)
+
+        val cn = ChangeNotation(function)
+        cn.getPostfixNotation()
+
+        val gen = GenerateTruthTable(numVar, cn.getPostfixNotation())
+
+        //val tblTruth = findViewById(R.id.truthTable) as TableView<*>
+        //gen.printInTextView(lblValues,function)
+        //gen.printInTableView(tblTruth,function,this)
+
+        /*try {
+            val cn = ChangeNotation(function)
+            cn.getPostfixNotation()
             try {
-                val gen = generateTruthTable(nov, cn.getPostfixNotation())
+                val gen = GenerateTruthTable(numVar, cn.getPostfixNotation())
                 gen.printInTextView(lblValues,function)
             } catch (e: Exception){
-                alerts.showSimpleAlert("Error","Imposible realizar la operacion")
+                alerts.showSimpleAlert("Input Error",getString(R.string.input_error))
+                // guardar en bd la que no se pudo
             }
         } catch (e: Exception){
-            alerts.showSimpleAlert("Error","Error de notacion")
-        }
+            alerts.showSimpleAlert("Input Error",getString(R.string.internal_error))
+        }*/
     }
 }

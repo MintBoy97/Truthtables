@@ -1,9 +1,12 @@
 package organicwaves.truthtables
 
+import android.content.Context
+import android.util.Log
 import android.widget.TextView
 import java.lang.Math.pow
 
-class generateTruthTable {
+
+class GenerateTruthTable {
 
     private var numberOfVariables = 0
     private var postfixExpression = ""
@@ -44,7 +47,7 @@ class generateTruthTable {
     private fun evaluatePostfixExpression(): IntArray {
         var result = IntArray(1024)
         val initialOfTruthTableTable = generateMatrixWhitTruthValues()
-        var charStack = stack()
+        var charStack = Stack()
         var temporalPostfixExpression: String
         for (k in 0 until rows) {
             temporalPostfixExpression = ""
@@ -67,74 +70,98 @@ class generateTruthTable {
         return result
     }
 
-    private fun chooseColumnForOperand(operator: Char): Int {
-        return (operator - 'P')
+    private fun chooseColumnForOperand(operand: Char): Int {
+        when(operand) {
+            'A' -> return 0
+            'B' -> return 1
+            'C' -> return 2
+            'D' -> return 3
+            'E' -> return 4
+            'F' -> return 5
+            'X' -> return 6
+            'Y' -> return 7
+            'Z' -> return 8
+            'W' -> return 9
+        }
+        return -1
     }
 
-    private fun getHierarchyOperator(operator: Char): Int {
-        when (operator) {
-            '\'' -> return 5
-            '∧' -> return 4
-            '∨' -> return 3
-            '→' -> return 2
-            '↔' -> return 1
+    private fun getHierarchyOperator(operator:Char): Int {
+        when(operator) {
+            '~' -> return 5
+            '⊕' -> return 4
+            'X' -> return 4
+            '·' -> return 3
+            '&' -> return 3
+            '+' -> return 2
+            'N' -> return 2
         }
         return -1
     }
 
     private fun solveOperator(operator: Char, var1: Int, var2: Int): Int {
         when (operator) {
-            '\'' -> return negation(var1)
-            '∧' -> return conjunction(var1, var2)
-            '∨' -> return disjunction(var1, var2)
-            '→' -> return conditional(var1, var2)
-            '↔' -> return biconditional(var1, var2)
+            '~' -> return not(var1)
+            '⊕' -> return xor(var1, var2)
+            'X' -> return not(xor(var1,var2))
+            '·' -> return and(var1, var2)
+            '&' -> return not(and(var1, var2))
+            '+' -> return or(var1, var2)
+            'N' -> return not(or(var1, var2))
         }
         return -1
     }
 
-    private fun negation(var1: Int): Int {
+    private fun not(var1: Int): Int {
         return 1 - var1
     }
 
-    private fun conjunction(var1: Int, var2: Int): Int {
+    private fun and(var1: Int, var2: Int): Int {
         return var1 * var2
     }
 
-    private fun disjunction(var1: Int, var2: Int): Int {
+    private fun or(var1: Int, var2: Int): Int {
         if ((var1 + var2) > 1) {
             return 1
         }
         return var1 + var2
     }
 
-    private fun conditional(var1: Int, var2: Int): Int {
-        if (var1 == 0 && var2 == 1) {
+    private fun xor(var1: Int, var2: Int): Int {
+        if (var1 == var2) {
             return 0
         }
         return 1
     }
 
-    private fun biconditional(var1: Int, var2: Int): Int {
-        if (var1 == var2) {
-            return 1
+    private fun getStrVariable(nVar: Int): Char {
+        when (nVar) {
+            0 -> return 'A'
+            1 -> return 'B'
+            2 -> return 'C'
+            3 -> return 'D'
+            4 -> return 'E'
+            5 -> return 'F'
+            6 -> return 'X'
+            7 -> return 'Y'
+            8 -> return 'Z'
+            9 -> return 'W'
         }
-        return 0
+        return '0'
     }
 
     fun printInTextView(tv: TextView, fn: String) {
         var toShow = ""
         for (j in 0 until columns) {
-            toShow += "${('P' + j)}  "
+            toShow += "${getStrVariable(j)}  "
         }
         toShow += "$fn\n"
         for (i in 0 until rows) {
             for (j in 0 until columns) {
                 toShow += "${initialOfTruthTableTable[j][i]}  "
             }
-            toShow += "   ${resultOfTruthTableTable[i].toChar()}\n"
+            toShow += "\t${resultOfTruthTableTable[i].toChar()}\n"
         }
         tv.text = toShow
     }
-
 }
