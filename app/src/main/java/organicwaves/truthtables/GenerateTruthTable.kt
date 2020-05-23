@@ -1,9 +1,16 @@
 package organicwaves.truthtables
 
 import android.content.Context
-import android.util.Log
+import android.graphics.Color
+import android.graphics.drawable.ShapeDrawable
+import android.graphics.drawable.shapes.RectShape
+import android.util.TypedValue
+import android.view.Gravity
+import android.widget.TableLayout
+import android.widget.TableRow
 import android.widget.TextView
 import java.lang.Math.pow
+import android.graphics.Paint.Style
 
 
 class GenerateTruthTable {
@@ -45,7 +52,7 @@ class GenerateTruthTable {
     }
 
     private fun evaluatePostfixExpression(): IntArray {
-        var result = IntArray(1024)
+        var result = IntArray(1024+5)
         val initialOfTruthTableTable = generateMatrixWhitTruthValues()
         var charStack = Stack()
         var temporalPostfixExpression: String
@@ -163,5 +170,89 @@ class GenerateTruthTable {
             toShow += "\t${resultOfTruthTableTable[i].toChar()}\n"
         }
         tv.text = toShow
+    }
+
+    fun printInTableLayout(tbl: TableLayout, fn: String){
+        val context = tbl.context
+        val layoutParams = TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT)
+        val txtSize = 10f
+
+        // Color of rows
+        val colorh = Color.parseColor("#493C44")
+        val color1 = Color.parseColor("#dcdfe6")
+        val color2 = Color.parseColor("#708777")
+        var currentColor = color2
+
+        // Header of the table
+        val headerRow = TableRow(context)
+        headerRow.layoutParams = layoutParams
+
+        for (j in 0 until columns) {
+            headerRow.addView(createStrokeFixedTextView(context, getStrVariable(j).toString(), txtSize, colorh))
+        }
+        headerRow.addView(createStrokeTextView(context, fn, txtSize, colorh))
+
+        tbl.addView(headerRow)
+
+        // Data of the table
+        for (i in 0 until rows) {
+
+            val dataRow = TableRow(context)
+            dataRow.layoutParams = layoutParams
+
+            if (i % 4 == 0) {
+                if (currentColor == color1) {
+                    currentColor = color2
+                } else {
+                    currentColor = color1
+                }
+            }
+
+            for (j in 0 until columns) {
+                dataRow.addView(createStrokeFixedTextView(context, initialOfTruthTableTable[j][i].toString(), txtSize, currentColor))
+            }
+            dataRow.addView(createStrokeFixedTextView(context, resultOfTruthTableTable[i].toChar().toString(), txtSize, currentColor))
+
+            tbl.addView(dataRow)
+        }
+    }
+
+    private fun createStrokeFixedTextView(context: Context, text:String, textSize:Float, color:Int):TextView {
+        var tv = TextView(context)
+        tv.text = text
+        tv.textSize = dpToPx(textSize,context)
+        tv.setTextColor(Color.BLACK)
+        tv.gravity = Gravity.CENTER
+        tv.width = dpToPx(30f,context).toInt()
+        tv.setBackgroundColor(color)//falta ver que pex
+        // stroke
+        val sd = ShapeDrawable()
+        sd.shape = RectShape()
+        sd.paint.color = Color.BLACK
+        sd.paint.strokeWidth = 5f
+        sd.paint.style = Style.STROKE
+        tv.background = sd
+        return tv
+    }
+
+    private fun createStrokeTextView(context: Context, text:String, textSize:Float, color:Int):TextView {
+        var tv = TextView(context)
+        tv.text = text
+        tv.textSize = dpToPx(textSize,context)
+        tv.setTextColor(Color.BLACK)
+        tv.gravity = Gravity.CENTER
+        tv.setBackgroundColor(color)//falta ver que pex
+        // stroke
+        val sd = ShapeDrawable()
+        sd.shape = RectShape()
+        sd.paint.color = Color.BLACK
+        sd.paint.strokeWidth = 5f
+        sd.paint.style = Style.STROKE
+        tv.background = sd
+        return tv
+    }
+
+    private fun dpToPx(dp: Float, context: Context): Float {
+        return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, context.resources.displayMetrics)
     }
 }

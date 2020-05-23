@@ -5,6 +5,7 @@ package organicwaves.truthtables
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.widget.TableLayout
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.AdView
 import com.google.android.gms.ads.MobileAds
@@ -31,27 +32,19 @@ class ShowResults : AppCompatActivity() {
         val numVar:Int = searchObject.getStringExtra("numberOfVariables").toInt()
         val function = searchObject.getStringExtra("function")
 
-        val cn = ChangeNotation(function)
-        cn.getPostfixNotation()
-
-        val gen = GenerateTruthTable(numVar, cn.getPostfixNotation())
-
-        //val tblTruth = findViewById(R.id.truthTable) as TableView<*>
-        //gen.printInTextView(lblValues,function)
-        //gen.printInTableView(tblTruth,function,this)
-
-        /*try {
+        try {
             val cn = ChangeNotation(function)
             cn.getPostfixNotation()
             try {
-                val gen = GenerateTruthTable(numVar, cn.getPostfixNotation())
-                gen.printInTextView(lblValues,function)
+                val tableGenerator = GenerateTruthTable(numVar, cn.getPostfixNotation())
+                val tbl = findViewById<TableLayout>(R.id.tblTruth)
+                tableGenerator.printInTableLayout(tbl,function)
             } catch (e: Exception){
                 alerts.showSimpleAlert("Input Error",getString(R.string.input_error))
                 // guardar en bd la que no se pudo
             }
         } catch (e: Exception){
             alerts.showSimpleAlert("Input Error",getString(R.string.internal_error))
-        }*/
+        }
     }
 }
